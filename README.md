@@ -1,18 +1,15 @@
-# ahko
+# ahko4k
 
-> tested with Autohotkey 2.0-beta.3 on Windows 10
+> tested with Autohotkey 2.0-beta.12 on Windows 11
 
-ahko is a quick launcher for windows.
+ahko4k is a quick launcher for windows.
 
 ## Screenshots
 
-### Gridview :
+![](./assets/screenshot1.jpg)
 
-![](./assets/screenshot_gridview.png)
 
-### Listview(**Deprecated**) :
-
-![](./assets/screenshot_listview.png)
+![](./assets/screenshot2.jpg)
 
 ## Setup
 
@@ -24,8 +21,7 @@ right click the `ahko` tray icon, and then click the `Setup`
 
 ## Usage
 
-ahko scans two levels of directories in the watch folder. The number of objects per directory level is limited to 16. This means that a maximum of 16x16 = 256 objects can be listed.  
-This is because too many objects would NOT make the launcher "quick" enough.
+ahko4k scans two levels of directories in the watch folder. The number of objects per directory level is limited to 4. This means that a maximum of 4x4 = 16objects can be listed.  
 
 ### icon
 
