@@ -1,6 +1,6 @@
 
 
-#Include Gdip_All.ahk
+; #Include Gdip_All.ahk
 
 class ahko_gridview_class
 {
@@ -11,12 +11,8 @@ class ahko_gridview_class
 	use_gdip := 0
 
 	item_pos:=Array(
-		{x:0,y:0,key:'1'},{x:1,y:0,key:'2'},{x:2,y:0,key:'3'},
-		{x:0.5,y:1,key:'q'},{x:1.5,y:1,key:'w'},{x:2.5,y:1,key:'e'},
-		{x:1,y:2,key:'a'},{x:2,y:2,key:'s'},{x:3,y:2,key:'d'},
-		{x:3,y:0,key:'4'},{x:3.5,y:1,key:'r'},{x:4,y:2,key:'f'},
-		{x:1.5,y:3,key:'z'},{x:2.5,y:3,key:'x'},{x:3.5,y:3,key:'c'},
-		{x:4.5,y:3,key:'v'})
+		{x:0,y:0,key:'F13'},{x:1,y:0,key:'F14'},{x:2,y:0,key:'F15'},{x:3,y:0,key:'F16'},
+	)
 	buttonSize:=200
 	outerIndex:=1
 	gmargin:=10
@@ -36,7 +32,7 @@ class ahko_gridview_class
 			this.buttonSize, 
 			this.titleHeight, 
 			"left", 
-			" ahko")
+			" ahko4k")
 
 		For k0, layer0 in ahko
 		{
@@ -59,6 +55,8 @@ class ahko_gridview_class
 					this.gui_add_grid_btn(sub_gui, k1, layer1)
 				}
 				this.set_gui_transparent(sub_gui)
+			} else {
+				sub_gui:=""
 			}
 			; add grid button
 			this.gui_add_grid_btn(this.grid_gui, k0, layer0, sub_gui)
@@ -103,7 +101,7 @@ class ahko_gridview_class
 		HotIfWinActive("ahk_group subgridGroup")
 		hotkey("Escape", subgrid_return)
 		hotkey("``", subgrid_return)
-		Loop 16
+		Loop maxTargetCount
 		{
 			hotkey(this.item_pos[A_Index].key, subgrid_func_maker(A_Index))
 		}
@@ -245,6 +243,19 @@ class ahko_gridview_class
 		showat_monitor(n){
 			Return "x" Round(isFullScreen.monitors[n].l+isFullScreen.monitors[n].r-this.grid_gui.size.w)//2 " y" Round(isFullScreen.monitors[n].t+isFullScreen.monitors[n].b-this.grid_gui.size.h)//2
 		}
+	}
+
+	isShow() {
+		For , v in this.grid_sub_gui
+		{
+			if(!v.isHide){
+				return 1
+			}
+		}
+		if(!this.grid_gui.isHide){
+			return 1
+		}
+		return 0
 	}
 
 	; for callback this=button

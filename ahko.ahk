@@ -2,11 +2,14 @@
 SetWorkingDir A_ScriptDir
 Persistent
 
+maxTargetCount:=4
+
 path:=IniRead("setting.ini", "dir", "path", "")
-hotkeys:=IniRead("setting.ini", "hotkey", "key", "!q")
+; hotkeys:=IniRead("setting.ini", "hotkey", "key", "!q")
 fullscreen_enable:=IniRead("setting.ini", "hotkey", "fullscreen", "0")
 uiType_list:="1|2"
-uiType:=IniRead("setting.ini", "ui", "type", "2")
+; uiType:=IniRead("setting.ini", "ui", "type", "2")
+uiType:="2"
 if not RegExMatch(uiType, uiType_list)
 {
 	uiType := "2"
@@ -43,7 +46,7 @@ if(!DirExist(path)) {
 	Return
 }
 
-TrayTip "ahko start at " path, "ahko", 0x14
+TrayTip "ahko4k start at " path, "ahko", 0x14
 
 ahko := []
 ahko_init(&ahko, path)
@@ -64,7 +67,7 @@ ahko_init(&ahko, path)
 					icon_map.set(iconFileName[1], A_LoopFileFullPath)
 					Continue
 				}
-				if(target_count >= 16){
+				if(target_count >= maxTargetCount){
 					Continue
 				}
 				ahko[-1].sub.Push({name:filenameWithoutExt(A_LoopFileName),attrib:A_LoopFileAttrib,path:A_LoopFileFullPath,icon:""})
@@ -77,7 +80,7 @@ ahko_init(&ahko, path)
 				}
 			}
 		}
-		if(A_Index >= 16){
+		if(A_Index >= maxTargetCount){
 			Break
 		}
 	}
@@ -101,9 +104,15 @@ fileGethIcon(file)
 	Return
 }
 
-isNotFullScreen(*)
+
+isNotAhkoShown(*)
 {
-	Return not isFullScreen()
+	return !ahko_gridview.isShow()
+}
+
+isNotFullScreenAndNotAhkoShown(*)
+{
+	Return !ahko_gridview.isShow() &&!isFullScreen()
 }
 
 #Include ahko_ui.ahk
@@ -111,10 +120,18 @@ ahko_ui_init()
 ; TODO: if hotkey invalid, then reset the hotkey to default
 if(fullscreen_enable)
 {
-	Hotkey hotkeys, ahko_show, "On"
+	Hotif(isNotAhkoShown)
+	Hotkey "F13", ahko_show, "On"
+	Hotkey "F14", ahko_show, "On"
+	Hotkey "F15", ahko_show, "On"
+	Hotkey "F16", ahko_show, "On"
+	Hotif
 } else {
-	Hotif isNotFullScreen
-	Hotkey hotkeys, ahko_show, "On"
+	Hotif(isNotFullScreenAndNotAhkoShown)
+	Hotkey "F13", ahko_show, "On"
+	Hotkey "F14", ahko_show, "On"
+	Hotkey "F15", ahko_show, "On"
+	Hotkey "F16", ahko_show, "On"
 	Hotif
 }
 

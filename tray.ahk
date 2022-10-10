@@ -28,7 +28,7 @@ setTray()
 		}
 		tray.add()
 	}
-	tray.add("Github 页面", gotoWebpage_maker("https://github.com/Nigh/ahko"))
+	tray.add("Github 页面", gotoWebpage_maker("https://github.com/HelloWorksGroup/ahko4k"))
 	tray.add("Donate 捐助", gotoWebpage_maker("https://ko-fi.com/xianii"))
 	tray.add("Reload 刷新", Reloads)
 	tray.add("Exit", trayExit)

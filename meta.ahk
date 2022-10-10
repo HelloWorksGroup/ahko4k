@@ -1,12 +1,12 @@
 
 FileEncoding("UTF-8")
-appName:="ahko"
-version:="0.2.4"
+appName:="ahko4k"
+version:="0.4.0"
 versionFilename:="version.txt"
 ahkFilename:="app.ahk"
-binaryFilename:="ahko.exe"
-downloadFilename:="ahko.zip"
-downloadUrl:="/Nigh/ahko/releases/latest/download/"
+binaryFilename:="ahko4k.exe"
+downloadFilename:="ahko4k.zip"
+downloadUrl:="/HelloWorksGroup/ahko4k/releases/latest/download/"
 update_log:="
 (
 

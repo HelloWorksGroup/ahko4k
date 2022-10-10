@@ -1,4 +1,6 @@
 ﻿
+#Requires AutoHotkey v2.0-beta
+
 SetWorkingDir(A_ScriptDir)
 #Warn Unreachable, Off
 #SingleInstance force
@@ -35,7 +37,7 @@ Hotkey("F5", _exit)
 Hotkey("F6", _reload)
 ;@Ahk2Exe-IgnoreEnd
 
-#include update.ahk
+; #include update.ahk
 OnExit(trueExit)
 
 ; ===============================================================

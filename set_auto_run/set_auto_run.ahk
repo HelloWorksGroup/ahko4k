@@ -1,5 +1,10 @@
 
 
+#Requires AutoHotkey v2.0-beta
+
+#SingleInstance Force
+SetWorkingDir(A_ScriptDir)
+
 ;@Ahk2Exe-SetCompanyName HelloWorks
 ;@Ahk2Exe-SetName SAR
 ;@Ahk2Exe-SetVersion 0.0.0
