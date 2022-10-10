@@ -16,5 +16,5 @@ $RECYCLE.BIN/
 
 dist/
 
-*.exe
+set_auto_run/*.exe
 *.ini

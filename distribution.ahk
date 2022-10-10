@@ -1,7 +1,5 @@
-; # requirements:
-; # ahk2exe.exe in PATH [1.1.34.00_Beta_8]
-; # AutoHotkey64.exe in PATH [v2.0-beta.3]
-; # mpress in ahk2exe path
+
+#Requires AutoHotkey v2.0-beta
 
 #SingleInstance Force
 SetWorkingDir(A_ScriptDir)
@@ -35,7 +33,7 @@ DirCreate("dist")
 
 try
 {
-	RunWait("ahk2exe.exe /in updater.ahk /out updater.exe /base `"" A_AhkPath "`" /compress 1")
+	RunWait("ahk_compiler/ahk2exe.exe /in updater.ahk /out updater.exe /base `"" A_AhkPath "`" /compress 1")
 }
 catch as e
 {
@@ -45,7 +43,17 @@ catch as e
 
 try
 {
-	RunWait("ahk2exe.exe /in " ahkFilename " /out " binaryFilename " /base `"" A_AhkPath "`" /compress 1")
+	RunWait("ahk_compiler/ahk2exe.exe /in set_auto_run/set_auto_run.ahk /base `"" A_AhkPath "`" /compress 1")
+}
+catch as e
+{
+	MsgBox("set_auto_run.ahk`nERROR CODE=" . e.Message)
+	ExitApp
+}
+
+try
+{
+	RunWait("ahk_compiler/ahk2exe.exe /in " ahkFilename " /out " binaryFilename " /base `"" A_AhkPath "`" /compress 1")
 }
 catch as e
 {
@@ -55,7 +63,7 @@ catch as e
 
 try
 {
-	RunWait("AutoHotkey64.exe .\" . ahkFilename . " --out=version")
+	RunWait("ahk_compiler/AutoHotkey64.exe .\" . ahkFilename . " --out=version")
 }
 catch as e
 {
